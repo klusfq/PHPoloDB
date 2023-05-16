@@ -1,0 +1,15 @@
+{
+    "name": "fuquan/pholo",
+    "autoload": {
+        "psr-4": {
+            "Fuquan\\Pholo\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "klusfq",
+            "email": "fuquan.yoxi@qq.com"
+        }
+    ],
+    "require": {}
+}
