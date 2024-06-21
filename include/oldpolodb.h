@@ -5,9 +5,8 @@
 #elif defined(__APPLE__)
     #define FFI_LIB "../target/debug/libpolodb_clib.dylib"
 #elif defined(_WIN32)
-    #define FFI_LIB "../target/debug/libpolodb_clib.ddl"
+    #define FFI_LIB "../target/debug/libpolodb_clib.dll"
 #endif
-
 
 
 struct Database;
