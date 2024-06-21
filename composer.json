@@ -2,7 +2,9 @@
     "name": "fuquan/pholo",
     "autoload": {
         "psr-4": {
-            "Fuquan\\Pholo\\": "src/"
+            "Pholo\\": "src/",
+            "Pholo\\Utils\\": "src/utils/",
+            "Pholo\\Internal\\": "src/internal/"
         }
     },
     "authors": [
@@ -11,5 +13,7 @@
             "email": "fuquan.yoxi@qq.com"
         }
     ],
-    "require": {}
+    "require": {
+        "ffi/scalar-utils": "^1.0"
+    }
 }

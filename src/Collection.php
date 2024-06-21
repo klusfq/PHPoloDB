@@ -1,10 +1,12 @@
 <?php
 
-namespace \Fuquan\Pholo;
+namespace Pholo;
 
 use Document;
 
-class Collection {
+class Collection
+{
+
     /**
      * 插入一条记录
      *
@@ -31,7 +33,7 @@ class Collection {
      *
      * @return  []Document      文档列表
      */
-    public function find(array $fields, array $conds) array
+    public function find(array $fields, array $conds = []) array
     {
     }
 
@@ -53,4 +55,6 @@ class Collection {
      * @return  []Document      文档列表
      */
     public function delete(array $conds) array
+	{
+	}
 }

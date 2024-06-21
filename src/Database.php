@@ -1,6 +1,6 @@
 <?php
 
-namespace Fuquan\Pholo;
+namespace Pholo;
 
 use Collection;
 
@@ -8,7 +8,7 @@ class Database
 {
     const HEADER_FILE = PRO_INIT_PATH . '/phpolodb.h';
 
-    protected static $ffi = NULl;
+    protected static $ffi = NULL;
     protected static $dbCtx = NULL;
 
     /**
