@@ -4,11 +4,11 @@
 #define FFI_SCOPE "PHPOLODB"
 
 #if defined(__linux__)
-    #define FFI_LIB "../target/debug/libpolodb_clib.so"
+    #define FFI_LIB "../PoloDB/target/debug/libpolodb_clib.so"
 #elif defined(__APPLE__)
-    #define FFI_LIB "../target/debug/libpolodb_clib.dylib"
+    #define FFI_LIB "../PoloDB/target/debug/libpolodb_clib.dylib"
 #elif defined(_WIN32)
-    #define FFI_LIB "../target/debug/libpolodb_clib.dll"
+    #define FFI_LIB "../PoloDB/target/debug/libpolodb_clib.dll"
 #endif
 
 struct Database;

@@ -3,9 +3,23 @@
 namespace Pholo;
 
 use Document;
+use \FFI::CData;
 
 class Collection
 {
+    protected string $name = '';
+    protected Database $db = NULL;
+
+    protected CData $ver = NULL;
+    protected CData $id = NULL;
+
+    public function __construct(string $colName, Database $db) {
+        $this->db = &$db;
+        $this->name = $colName;
+
+        $this->ver = \FFI::new('uint32_t');
+        $this->id = \FFI::new('uint32_t');
+    }
 
     /**
      * 插入一条记录
@@ -14,6 +28,14 @@ class Collection
      */
     public function insert(array $row) bool
     {
+        try {
+            $doc = new Document($row);
+
+            Loger::info($doc);
+
+            BaseCURD::insert($this->db, $this, $doc);
+        } catch (\Exception $e) {
+        }
     }
 
     /**

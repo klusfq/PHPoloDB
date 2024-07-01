@@ -2,29 +2,26 @@
 
 namespace Pholo;
 
+use Internal\Env;
 use Collection;
 
 class Database
 {
-    const HEADER_FILE = PRO_INIT_PATH . '/phpolodb.h';
-
-    protected static $ffi = NULL;
-    protected static $dbCtx = NULL;
+    protected $dbCtx = NULL;
 
     /**
      * 打开文件
      */
     public static function openFile(string $filename): Database
     {
-        /**
-         * 静态变量
-         * 1. 初始化ffi
-         * 2. 初始化db上下文
-         */
-        self::$ffi = \FFI::load(self::HEADER_FILE);
-        self::$dbCtx = self::$ffi->PLDB_open($filename);
+        return new Database($filename);
+    }
 
-        return new Database();
+    /**
+     * 初始化db上下文
+     */
+    private function __construct(string $fname) {
+        $this->dbCtx = Env::GetFFI()->PLDB_open($fname);
     }
 
     /**
@@ -32,6 +29,24 @@ class Database
      */
     public function collection(string $colName): Collection
     {
-        $col = new Collection();
+        if ($this->existCollection($colName)) {
+        }
+
+        $col = new Collection($colName, $this);
+    }
+
+    /**
+     * 获取db套接字(指针)
+     */
+    public function asPtr()
+    {
+        return self::$dbCtx;
+    }
+
+    /**
+     * 是否存在Collection
+     */
+    private function existCollection(string $colName): bool
+    {
     }
 }

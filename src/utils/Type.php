@@ -7,7 +7,7 @@ use FFI\Scalar\Type as Ftype;
 
 class Type
 {
-    public static function trans(mixed $val): CData | Throwable {
+    public static function trans2Cdata(mixed $val): CData | Throwable {
         switch (gettype($val)) {
             case 'boolean':
                 return Ftype::bool($val);
