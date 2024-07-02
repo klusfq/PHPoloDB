@@ -1,9 +1,10 @@
 <?php
+
 namespace Pholo\Internal;
 
 class Env
 {
-    const HEADER_FILE = PRO_INIT_PATH . '/phpolodb.h';
+    const HEADER_FILE = PRO_INIT_PATH . '/pholodb.h';
 
     protected static $ffi = NULL;
 

@@ -2,8 +2,9 @@
 
 namespace Pholo;
 
-use Internal\Env;
-use Collection;
+use Pholo\Internal\{Env, LibCollection};
+use Pholo\Collection;
+use Pholo\Utils\Loger;
 
 class Database
 {
@@ -24,15 +25,23 @@ class Database
         $this->dbCtx = Env::GetFFI()->PLDB_open($fname);
     }
 
+    public function __destruct() {
+        Env::GetFFI()->PLDB_close($this->dbCtx);
+    }
+
     /**
      * 选择collection
      */
     public function collection(string $colName): Collection
     {
-        if ($this->existCollection($colName)) {
+        $col = new Collection($colName, $this);
+
+        if (!LibCollection::isExist($col)) {
+            Loger::info("collection <{$colName}> is not exist, create it!");
+            LibCollection::createByName($col);
         }
 
-        $col = new Collection($colName, $this);
+        return $col;
     }
 
     /**
@@ -40,7 +49,7 @@ class Database
      */
     public function asPtr()
     {
-        return self::$dbCtx;
+        return $this->dbCtx;
     }
 
     /**

@@ -3,18 +3,19 @@
 namespace Pholo;
 
 use Document;
-use \FFI::CData;
+use \FFI\CData;
+use \FFI\Scalar\Type as Ftype;
 
 class Collection
 {
     protected string $name = '';
-    protected Database $db = NULL;
+    protected ?Database $db = NULL;
 
-    protected CData $ver = NULL;
-    protected CData $id = NULL;
+    public ?CData $ver = NULL;
+    public ?CData $id = NULL;
 
     public function __construct(string $colName, Database $db) {
-        $this->db = &$db;
+        $this->db = $db;
         $this->name = $colName;
 
         $this->ver = \FFI::new('uint32_t');
@@ -26,16 +27,18 @@ class Collection
      *
      * @return  bool     插入成功或失败
      */
-    public function insert(array $row) bool
+    public function insert(array $row): bool
     {
         try {
             $doc = new Document($row);
 
             Loger::info($doc);
 
-            BaseCURD::insert($this->db, $this, $doc);
+            // BaseCURD::insert($this->db, $this, $doc);
         } catch (\Exception $e) {
         }
+
+        return false;
     }
 
     /**
@@ -44,7 +47,7 @@ class Collection
      *
      * @return  int             影响文档数
      */
-    public function insertBatch(array $rows) int
+    public function insertBatch(array $rows): int
     {
     }
 
@@ -55,7 +58,7 @@ class Collection
      *
      * @return  []Document      文档列表
      */
-    public function find(array $fields, array $conds = []) array
+    public function find(array $fields, array $conds = []): array
     {
     }
 
@@ -66,7 +69,7 @@ class Collection
      *
      * @return  int             影响文档数
      */
-    public function update(array $row, array $conds) int
+    public function update(array $row, array $conds): int
     {
     }
 
@@ -76,7 +79,20 @@ class Collection
      *
      * @return  []Document      文档列表
      */
-    public function delete(array $conds) array
+    public function delete(array $conds): array
 	{
 	}
+
+    public function getDB(): Database {
+        return $this->db;
+    }
+
+    public function getName(): string {
+        return $this->name;
+    }
+
+    public function getCdataName(): CData {
+        return Ftype::string($this->name);
+    }
+
 }
