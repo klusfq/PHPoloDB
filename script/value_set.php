@@ -13,18 +13,13 @@ const PRO_INIT_PATH = __DIR__ . '/../include';
 
 Loger::info(PRO_INIT_PATH);
 
+
 // $db = \Pholo\Database::openFile('./pholo.db');
-
 $res = \Pholo\Internal\LibDocument::toPLDBValue(18);
-var_dump($res->inner());
-// var_dump(\FFI::typeof(\FFI::addr($res->inner()->tag))->getName());
-var_dump(\FFI::sizeof($res->inner()));
+var_dump($res);
 
-$ffi = \Pholo\Internal\Env::GetFFI();
-$rdoc = $ffi->PLDB_mk_doc();
-Loger::info($rdoc);
+$res = \Pholo\Internal\LibDocument::toPLDBValue('hello');
+var_dump($res);
 
-$errNo = $ffi->PLDB_doc_set($rdoc, 'name', $res->inner());
-Loger::info($errNo);
-
-Loger::info($rdoc);
+$res = \Pholo\Internal\LibDocument::toPLDBValue(false);
+var_dump($res);
