@@ -16,7 +16,7 @@ typedef struct Database Database;
 typedef struct DbHandle DbHandle;
 typedef struct DbObjectId DbObjectId;
 
-typedef enum {
+typedef enum PLDB_VALUE_TYPE {
   PLDB_VAL_NULL = 0x0A,
   PLDB_VAL_DOUBL = 0x01,
   PLDB_VAL_BOOLEAN = 0x08,
@@ -30,7 +30,6 @@ typedef enum {
 } PLDB_VALUE_TYPE;
 
 typedef struct PLDBValue {
-    // FIXME: maybe bit-fields align is not eq uint8_t
     // PLDB_VALUE_TYPE tag: 8;
     uint8_t tag;
     union {
@@ -111,7 +110,8 @@ void PLDB_free_doc(DbDocument* doc);
 
 int PLDB_doc_set(DbDocument* doc, const char* key, PLDBValue val);
 // 
-// int PLDB_doc_get(DbDocument* doc, const char* key, PLDBValue* out_val);
+int PLDB_doc_get(DbDocument* doc, const char* key, PLDBValue* out_val);
+
 // 
 // int PLDB_doc_len(DbDocument* doc);
 // 

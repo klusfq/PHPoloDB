@@ -25,6 +25,8 @@ class LibValue
 
     protected ?CData $data = null;
 
+    protected mixed $other = null;
+
     public function __construct(mixed $origin) {
         $this->data = Env::GetFFI()->new('PLDBValue');
 
@@ -48,7 +50,8 @@ class LibValue
                 $this->data->v->double_value = Ftype::double($origin);
                 break;
             case 'string':
-                $this->data->v->str = \FFI::addr(Ftype::string($origin)[0]);
+                $this->other = Ftype::string($origin);
+                $this->data->v->str = \FFI::addr($this->other[0]);
                 break;
 
             // TODO
