@@ -23,3 +23,7 @@ var_dump($res);
 
 $res = \Pholo\Internal\LibDocument::toPLDBValue(false);
 var_dump($res);
+
+// -- 为了验证内存布局
+// $pffi = \FFI::load(__DIR__ . "/cpby/other.h");
+// $pffi->print_byte_stream(\FFI::addr($res->inner()), \FFI::sizeof($res->inner()));

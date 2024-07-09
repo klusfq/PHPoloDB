@@ -17,7 +17,23 @@ $db = \Pholo\Database::openFile('./pholo.db');
 
 $col = $db->collection('study-final');
 
+
+// step 1
+$doc =  new \Pholo\Document([
+    'name' => 'qiuqiu',
+    'age' => 28,
+]);
+
+
+\Pholo\Internal\BaseCURD::insert(
+    $db,
+    $col,
+    $doc,
+);
+
+
 exit();
+// step 2
 
 $res = $col->insert([
     'object' => 'PHPolo',

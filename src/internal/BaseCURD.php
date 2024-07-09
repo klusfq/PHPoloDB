@@ -1,8 +1,10 @@
 <?php
 namespace Pholo\Internal;
 
-use \Pholo\{Database, Collection, Document};
-use \Pholo\Utils\Loger;
+use Pholo\{Database, Collection, Document};
+use Pholo\Utils\Loger;
+use \FFI;
+use FFI\Scalar\Type as Ftype;
 
 class BaseCURD
 {
@@ -11,9 +13,10 @@ class BaseCURD
         $pId = FFI::new('uint32_t');
         $pVer = FFI::new('uint32_t');
 
+        $colName = Ftype::string($col->getName());
         $errNum = Env::GetFFI()->PLDB_get_collection_meta_by_name(
             $db->asPtr(),
-            FFI::cast('const char*', FFI::addr($col->name)),
+            FFI::cast('const char*', FFI::addr($colName)),
             FFI::addr($pId),
             FFI::addr($pVer),
         );
@@ -28,7 +31,7 @@ class BaseCURD
         Loger::info($okNum);
 
         if ($okNum > 0) {
-            throw new PoError(PoErrorCode::);
+            throw new PoError(PoErrorCode::INSERT_FAILED);
         }
     }
 }
