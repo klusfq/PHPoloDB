@@ -1,2 +1,7 @@
 /vendor/
 composer.lock
+
+*.db
+*.so
+*.dylib
+*.dll
