@@ -2,9 +2,10 @@
 
 namespace Pholo;
 
-use Document;
 use \FFI\CData;
 use \FFI\Scalar\Type as Ftype;
+use Pholo\Utils\Loger;
+use Pholo\Internal\{LibCollection, BaseCURD};
 
 class Collection
 {
@@ -23,6 +24,17 @@ class Collection
     }
 
     /**
+     * 初始化
+     */
+    public function init() {
+        if (LibCollection::isExist($this))
+            return;
+
+        Loger::info("collection <{$this->name}> is not exist, create it!");
+        LibCollection::createByName($this);
+    }
+
+    /**
      * 插入一条记录
      *
      * @return  bool     插入成功或失败
@@ -34,21 +46,12 @@ class Collection
 
             Loger::info($doc);
 
-            // BaseCURD::insert($this->db, $this, $doc);
+            BaseCURD::insert($this->db, $this, $doc);
         } catch (\Exception $e) {
+            Loger::warning($e->getMessage(), $e->getFile(), $e->getLine());
         }
 
         return false;
-    }
-
-    /**
-     * 插入一条记录
-     * @param   []Docmument     $rows   插入文档列表
-     *
-     * @return  int             影响文档数
-     */
-    public function insertBatch(array $rows): int
-    {
     }
 
     /**
@@ -59,6 +62,16 @@ class Collection
      * @return  []Document      文档列表
      */
     public function find(array $fields, array $conds = []): array
+    {
+    }
+
+    /**
+     * 插入一条记录
+     * @param   []Docmument     $rows   插入文档列表
+     *
+     * @return  int             影响文档数
+     */
+    public function insertBatch(array $rows): int
     {
     }
 

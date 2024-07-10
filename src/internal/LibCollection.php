@@ -22,7 +22,7 @@ class LibCollection
             FFI::addr($col->ver),
         );
 
-        Loger::info($errNum);
+        Loger::info("get collection meta data over");
 
         return $errNum;
 
@@ -37,7 +37,7 @@ class LibCollection
             FFI::addr($col->ver),
         );
 
-        Loger::info($errNum);
+        Loger::info("create collection over");
 
         return $errNum;
         // TODO

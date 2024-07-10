@@ -36,10 +36,7 @@ class Database
     {
         $col = new Collection($colName, $this);
 
-        if (!LibCollection::isExist($col)) {
-            Loger::info("collection <{$colName}> is not exist, create it!");
-            LibCollection::createByName($col);
-        }
+        $col->init();
 
         return $col;
     }

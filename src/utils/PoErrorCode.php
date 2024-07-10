@@ -6,6 +6,7 @@ enum PoErrorCode: int
 {
     case NOT_SUPPORT_OBJECT = 1_001_001;
     case ARRAY_IS_NOT_LIST = 1_001_002;
+    case INSERT_FAILED = 1_001_003;
 
     public function errMsg(): string {
         return match($this) {
