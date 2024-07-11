@@ -109,11 +109,10 @@ DbDocument* PLDB_mk_doc();
 void PLDB_free_doc(DbDocument* doc);
 
 int PLDB_doc_set(DbDocument* doc, const char* key, PLDBValue val);
-// 
+
 int PLDB_doc_get(DbDocument* doc, const char* key, PLDBValue* out_val);
 
-// 
-// int PLDB_doc_len(DbDocument* doc);
+int PLDB_doc_len(DbDocument* doc);
 // 
 // DbDocumentIter* PLDB_doc_iter(DbDocument* doc);
 // 
