@@ -15,7 +15,7 @@ Loger::setColor();
 
 Loger::info(PRO_INIT_PATH);
 
-$db = \Pholo\Database::openFile('./pholo.db');
+$db = \Pholo\Database::openFile('./data/pholo.db');
 
 $col = $db->collection('study');
 
@@ -41,7 +41,7 @@ $res = $col->insert([
     'object' => 'PHPolo',
     'user' => 'klusfq',
     'member' => 3,
-    'isFinish' => false,
+    // 'isFinish' => false,
 ]);
 
 var_dump($res);

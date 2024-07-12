@@ -15,9 +15,10 @@ class LibCollection
     }
 
     public static function getMetaByName(Collection $col): int {
+        $tmpColName = $col->getCdataName();
         $errNum = Env::GetFFI()->PLDB_get_collection_meta_by_name(
             $col->getDB()->asPtr(),
-            FFI::cast('const char*', FFI::addr($col->getCdataName())),
+            FFI::cast('const char*', FFI::addr($tmpColName)),
             FFI::addr($col->id),
             FFI::addr($col->ver),
         );
@@ -25,14 +26,14 @@ class LibCollection
         Loger::info("get collection meta data over");
 
         return $errNum;
-
         // TODO
     }
 
     public static function createByName(Collection $col): int {
+        $tmpColName = $col->getCdataName();
         $errNum = Env::GetFFI()->PLDB_create_collection(
             $col->getDB()->asPtr(),
-            FFI::cast('const char*', FFI::addr($col->getCdataName())),
+            FFI::cast('const char*', FFI::addr($tmpColName)),
             FFI::addr($col->id),
             FFI::addr($col->ver),
         );

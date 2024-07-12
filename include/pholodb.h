@@ -78,17 +78,17 @@ int PLDB_version(char* buffer, unsigned int buffer_size);
 
 void PLDB_close(Database* db);
 
-// int PLDB_step(DbHandle* handle);
+int PLDB_step(DbHandle* handle);
 
-// int PLDB_handle_state(DbHandle* handle);
+int PLDB_handle_state(DbHandle* handle);
 
-// void PLDB_handle_get(DbHandle* handle, PLDBValue* out_val);
+void PLDB_handle_get(DbHandle* handle, PLDBValue* out_val);
 // 
 // int PLDB_handle_to_str(DbHandle* handle, char* buffer, unsigned int buffer_size);
 // 
-// void PLDB_close_and_free_handle(DbHandle* handle);
-// 
-// void PLDB_free_handle(DbHandle* handle);
+void PLDB_close_and_free_handle(DbHandle* handle);
+
+void PLDB_free_handle(DbHandle* handle);
 
 // DbArray* PLDB_mk_arr();
 // 
@@ -113,14 +113,14 @@ int PLDB_doc_set(DbDocument* doc, const char* key, PLDBValue val);
 int PLDB_doc_get(DbDocument* doc, const char* key, PLDBValue* out_val);
 
 int PLDB_doc_len(DbDocument* doc);
-// 
-// DbDocumentIter* PLDB_doc_iter(DbDocument* doc);
-// 
-// int PLDB_doc_iter_next(DbDocumentIter* iter,
-//   char* key_buffer, unsigned int key_buffer_size, PLDBValue* out_val);
-// 
-// void PLDB_free_doc_iter(DbDocumentIter* iter);
-// 
+
+DbDocumentIter* PLDB_doc_iter(DbDocument* doc);
+
+int PLDB_doc_iter_next(DbDocumentIter* iter,
+  char* key_buffer, unsigned int key_buffer_size, PLDBValue* out_val);
+
+void PLDB_free_doc_iter(DbDocumentIter* iter);
+
 // 
 // PLDBValue PLDB_mk_binary_value(const char* bytes, uint32_t size);
 // PLDBValue PLDB_dup_value(PLDBValue val);

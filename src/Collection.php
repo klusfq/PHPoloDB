@@ -33,6 +33,8 @@ class Collection
 
         Loger::info("collection <{$this->name}> is not exist, create it!");
         LibCollection::createByName($this);
+
+        var_dump($this);
     }
 
     /**
@@ -61,12 +63,12 @@ class Collection
      * @param   array           $conds      查询条件
      *
      * @return void*/
-    public function find(array $field, array $conds = []): array
+    public function find(array $conds = []): array
     {
         try {
             $doc = new Document($conds);
 
-            $handle = BaseCURD::find($this->db, $this, $doc, $field);
+            $handle = BaseCURD::find($this->db, $this, $doc);
         } catch (\Exception $e) {
             Loger::warning($e->getMessage(), $e->getFile(), $e->getLine());
             return [];
