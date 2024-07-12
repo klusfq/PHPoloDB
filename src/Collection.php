@@ -26,9 +26,10 @@ class Collection
     /**
      * 初始化
      */
-    public function init() {
-        if (LibCollection::isExist($this))
+    public function init(): void {
+        if (LibCollection::isExist($this)) {
             return;
+        }
 
         Loger::info("collection <{$this->name}> is not exist, create it!");
         LibCollection::createByName($this);
@@ -38,31 +39,40 @@ class Collection
      * 插入一条记录
      *
      * @return  bool     插入成功或失败
+     * @param array<int,mixed> $row
      */
     public function insert(array $row): bool
     {
         try {
             $doc = new Document($row);
 
-            Loger::info($doc);
-
             BaseCURD::insert($this->db, $this, $doc);
         } catch (\Exception $e) {
             Loger::warning($e->getMessage(), $e->getFile(), $e->getLine());
+            return false;
         }
 
-        return false;
+        return true;
     }
 
     /**
      * 查询数据
-     * @param   array           $fields     元数据
+     * @param   array           $field     元数据
      * @param   array           $conds      查询条件
      *
-     * @return  []Document      文档列表
-     */
-    public function find(array $fields, array $conds = []): array
+     * @return void*/
+    public function find(array $field, array $conds = []): array
     {
+        try {
+            $doc = new Document($conds);
+
+            $handle = BaseCURD::find($this->db, $this, $doc, $field);
+        } catch (\Exception $e) {
+            Loger::warning($e->getMessage(), $e->getFile(), $e->getLine());
+            return [];
+        }
+
+        return $handle->out();
     }
 
     /**
@@ -70,6 +80,7 @@ class Collection
      * @param   []Docmument     $rows   插入文档列表
      *
      * @return  int             影响文档数
+     * @param array<int,mixed> $rows
      */
     public function insertBatch(array $rows): int
     {
@@ -90,8 +101,8 @@ class Collection
      * 删除数据
      * @param   array           $conds      查询条件
      *
-     * @return  []Document      文档列表
-     */
+     * @return void
+     * */
     public function delete(array $conds): array
 	{
 	}
@@ -107,5 +118,4 @@ class Collection
     public function getCdataName(): CData {
         return Ftype::string($this->name);
     }
-
 }
