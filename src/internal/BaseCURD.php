@@ -28,18 +28,18 @@ class BaseCURD
         var_dump($arrHandle);
 
         // -- arrHandle just a pointer, the memory is malloced by rust
-        $okNum = Env::GetFFI()->PLDB_find(
+        $rowNum = Env::GetFFI()->PLDB_find(
             $db->asPtr(),
             $col->id->cdata,
             $col->ver->cdata,
             $doc->asPtr(),
             FFI::addr($arrHandle),
         );
-        Loger::info($okNum);
+        Loger::info(['data_num' => $rowNum]);
 
-        if ($okNum > 0) {
-            throw new PoError(PoErrorCode::FIND_FAILED);
-        }
+        // if ($rowNum === 0) {
+        //     return [];
+        // }
 
         var_dump($arrHandle);
 
@@ -48,14 +48,14 @@ class BaseCURD
         do {
             Env::GetFFI()->PLDB_step($arrHandle);
             $state = Env::GetFFI()->PLDB_handle_state($arrHandle);
-            Loger::info("state = " . $state);
+            Loger::info(["state" => $state]);
 
             $oVal = Env::GetFFI()->new('PLDBValue');
             Env::GetFFI()->PLDB_handle_get($arrHandle, FFI::addr($oVal));
 
-            // TODO
+            var_dump($oVal);
 
-            $outVal[] = $oVal;
+            $outVal[] = LibValue::fromCData($oVal)->into();
         } while ($state == LibHandleStatus::HasRow);
 
         return $outVal;

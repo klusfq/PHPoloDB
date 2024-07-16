@@ -41,7 +41,7 @@ $res = $col->insert([
     'object' => 'PHPolo',
     'user' => 'klusfq',
     'member' => 3,
-    // 'isFinish' => false,
+    'isFinish' => false,
 ]);
 
 var_dump($res);
