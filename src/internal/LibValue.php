@@ -18,7 +18,7 @@ class LibValue
 
         // -- TODO: wait
         'ObjectId' => 0x07,
-        'LibValue' => 0x13,
+        'Document' => 0x13,
         'Binary' => 0x05,
         'UTCTime' => 0x09,
     ];
@@ -27,31 +27,31 @@ class LibValue
 
     protected mixed $other = null;
 
-    public function __construct(mixed $origin) {
+    public function __construct() {
         $this->data = Env::GetFFI()->new('PLDBValue');
-
-        $this->from($origin);
     }
 
     public function inner() {
         return $this->data;
     }
 
-    protected function from(mixed $origin): void {
+    public static function from(mixed $origin): LibValue {
+        $valObj = new LibValue();
+
         $tp = gettype($origin);
         switch ($tp) {
             case 'boolean':
-                $this->data->v->bool_value = Ftype::int((int)$origin);
+                $valObj->data->v->bool_value = Ftype::int((int)$origin);
                 break;
             case 'integer':
-                $this->data->v->int_value = Ftype::int64($origin);
+                $valObj->data->v->int_value = Ftype::int64($origin);
                 break;
             case 'double':
-                $this->data->v->double_value = Ftype::double($origin);
+                $valObj->data->v->double_value = Ftype::double($origin);
                 break;
             case 'string':
-                $this->other = Ftype::string($origin);
-                $this->data->v->str = \FFI::addr($this->other[0]);
+                $valObj->other = Ftype::string($origin);
+                $valObj->data->v->str = \FFI::addr($valObj->other[0]);
                 break;
 
             // TODO
@@ -59,7 +59,16 @@ class LibValue
                 throw new PoError(PoErrorCode::NOT_SUPPORT_OBJECT);
         }
 
-        $this->data->tag = Ftype::uint8($this->tag($tp))->cdata;
+        $valObj->data->tag = Ftype::uint8($valObj->tag($tp))->cdata;
+
+        return $valObj;
+    }
+
+    public static function fromCData(CData $data): LibValue {
+        $valObj = new LibValue();
+        $valObj->data = $data;
+
+        return $valObj;
     }
 
     protected function tag(string $type): int {

@@ -9,15 +9,15 @@ use \FFI;
 class BaseCURD
 {
     public static function insert(Database $db, Collection $col, Document $doc): void {
-        $okNum = Env::GetFFI()->PLDB_insert(
+        $effectNum = Env::GetFFI()->PLDB_insert(
             $db->asPtr(),
             $col->id->cdata,
             $col->ver->cdata,
             $doc->asPtr(),
         );
 
-        if ($okNum > 0) {
-            Loger::warning($okNum);
+        if ($effectNum === 0) {
+            Loger::warning($effectNum);
             throw new PoError(PoErrorCode::INSERT_FAILED);
         }
     }

@@ -43,7 +43,7 @@ class LibDocument
      */
     public static function toPLDBValue(mixed $v): LibValue
     {
-        $val = new LibValue($v);
+        $val = LibValue::from($v);
 
         return $val;
     }
