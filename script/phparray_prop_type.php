@@ -11,5 +11,5 @@ $xop = [
 ];
 
 foreach ($xop as $k => $v) {
-	var_dump(\Pholo\Utils\Type::trans($v));
+	var_dump(\Pholur\Utils\Type::trans($v));
 }

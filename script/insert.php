@@ -5,7 +5,7 @@
  * 2. 中层封装，专注于类型变换（php类型 -> cData类型）
  * 3. 下层交互，专注于调用libc接口（动态链接库函数、cData类型 -> PLDB_*类型）
  */
-use \Pholo\Utils\Loger;
+use \Pholur\Utils\Loger;
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -15,19 +15,19 @@ Loger::setColor();
 
 Loger::info(PRO_INIT_PATH);
 
-$db = \Pholo\Database::openFile('./data/pholo.db');
+$db = \Pholur\Database::openFile('./data/pholo.db');
 
 $col = $db->collection('study');
 
 
 // step 1
-// $doc =  new \Pholo\Document([
+// $doc =  new \Pholur\Document([
 //     'name' => 'qiuqiu',
 //     'age' => 28,
 // ]);
 // 
 // 
-// \Pholo\Internal\BaseCURD::insert(
+// \Pholur\Internal\BaseCURD::insert(
 //     $db,
 //     $col,
 //     $doc,
