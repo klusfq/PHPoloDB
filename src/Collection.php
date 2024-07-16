@@ -1,11 +1,11 @@
 <?php
 
-namespace Pholo;
+namespace Pholur;
 
 use \FFI\CData;
 use \FFI\Scalar\Type as Ftype;
-use Pholo\Utils\Loger;
-use Pholo\Internal\{LibCollection, BaseCURD};
+use Pholur\Utils\Loger;
+use Pholur\Internal\{LibCollection, BaseCURD};
 
 class Collection
 {

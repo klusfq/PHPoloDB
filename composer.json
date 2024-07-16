@@ -1,10 +1,10 @@
 {
-    "name": "fuquan/pholo",
+    "name": "fuquan/pholur",
     "autoload": {
         "psr-4": {
-            "Pholo\\": "src/",
-            "Pholo\\Utils\\": "src/utils/",
-            "Pholo\\Internal\\": "src/internal/"
+            "Pholur\\": "src/",
+            "Pholur\\Utils\\": "src/utils/",
+            "Pholur\\Internal\\": "src/internal/"
         }
     },
     "authors": [

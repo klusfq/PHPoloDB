@@ -1,9 +1,9 @@
 <?php
 
-namespace Pholo\Internal;
+namespace Pholur\Internal;
 
-use Pholo\Collection;
-use Pholo\Utils\Loger;
+use Pholur\Collection;
+use Pholur\Utils\Loger;
 use \FFI;
 
 class LibCollection

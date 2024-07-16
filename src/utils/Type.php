@@ -1,6 +1,6 @@
 <?php
 
-namespace Pholo\Utils;
+namespace Pholur\Utils;
 
 use FFI\CData;
 use FFI\Scalar\Type as Ftype;

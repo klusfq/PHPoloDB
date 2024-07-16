@@ -1,6 +1,6 @@
 <?php
 
-namespace Pholo\Internal;
+namespace Pholur\Internal;
 
 enum LibHandleStatus: int
 {

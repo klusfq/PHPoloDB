@@ -1,9 +1,9 @@
 <?php
 
-namespace Pholo\Internal;
+namespace Pholur\Internal;
 
-use Pholo\Document;
-use Pholo\Utils\Loger;
+use Pholur\Document;
+use Pholur\Utils\Loger;
 use \FFI\CData;
 
 class LibDocument

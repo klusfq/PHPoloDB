@@ -1,6 +1,6 @@
 <?php
 
-namespace Pholo\Utils;
+namespace Pholur\Utils;
 
 enum PoErrorCode: int
 {

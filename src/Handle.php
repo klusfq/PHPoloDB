@@ -1,10 +1,10 @@
 <?php
 
-namespace Pholo;
+namespace Pholur;
 
 use \FFI\CData;
 use \FFI\Scalar\Type as Ftype;
-use Pholo\Utils\Loger;
+use Pholur\Utils\Loger;
 
 class Handle
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace Pholo;
+namespace Pholur;
 
-use Pholo\Internal\{Env, LibCollection};
-use Pholo\Collection;
-use Pholo\Utils\Loger;
+use Pholur\Internal\{Env, LibCollection};
+use Pholur\Collection;
+use Pholur\Utils\Loger;
 
 class Database
 {

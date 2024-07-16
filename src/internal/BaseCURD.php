@@ -1,8 +1,8 @@
 <?php
-namespace Pholo\Internal;
+namespace Pholur\Internal;
 
-use Pholo\{Database, Collection, Document, Handle};
-use Pholo\Utils\{Loger, PoError, PoErrorCode};
+use Pholur\{Database, Collection, Document, Handle};
+use Pholur\Utils\{Loger, PoError, PoErrorCode};
 use FFI\Scalar\Type as Ftype;
 use \FFI;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace Pholo\Internal;
+namespace Pholur\Internal;
 
-use Pholo\Utils\{Loger, PoError, PoErrorCode};
+use Pholur\Utils\{Loger, PoError, PoErrorCode};
 use FFI\Scalar\Type as Ftype;
 use \FFI\CData;
 
